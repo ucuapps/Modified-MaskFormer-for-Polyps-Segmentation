@@ -1,0 +1,17 @@
+# ipython/jupyter notebooks
+*.ipynb
+**/.ipynb_checkpoints/
+
+# editor settings
+.idea
+.vscode
+.DS_Store
+_darcs
+
+# project dirs
+/detectron2/model_zoo/configs
+/datasets/*
+!/datasets/*.*
+/projects/*/datasets
+/models
+/snippet

@@ -1,0 +1,41 @@
+_BASE_: ade20k-150/maskformer_R50_bs16_160k.yaml
+DATASETS:
+  TRAIN: ("hyperkvasir_train",)
+  TEST: ("hyperkvasir_test",)
+SOLVER:
+  CHECKPOINT_PERIOD: 1000
+  MAX_ITER: 20000
+#INPUT:
+#  MIN_SIZE_TRAIN: !!python/object/apply:eval ["[int(x * 0.1 * 512) for x in range(5, 21)]"]
+#  MIN_SIZE_TRAIN_SAMPLING: "choice"
+#  MIN_SIZE_TEST: 512
+#  MAX_SIZE_TRAIN: 2048
+#  MAX_SIZE_TEST: 2048
+#  CROP:
+#    ENABLED: True
+#    TYPE: "absolute"
+#    SIZE: (512, 512)
+#    SINGLE_CATEGORY_MAX_AREA: 1.0
+#  COLOR_AUG_SSD: True
+#  SIZE_DIVISIBILITY: 512  # used in dataset mapper
+#  FORMAT: "RGB"
+#  DATASET_MAPPER_NAME: "mask_former_semantic"
+TEST:
+  EVAL_PERIOD: 5000
+  AUG:
+    ENABLED: False
+    MIN_SIZES: [256, 384, 512, 640, 768, 896]
+    MAX_SIZE: 3584
+    FLIP: True
+MODEL:
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 1
+  SWIN:
+    EMBED_DIM: 48
+#    DEPTHS: [2, 2, 6, 2]
+#    NUM_HEADS: [3, 6, 12, 24]
+#    WINDOW_SIZE: 7
+#    APE: False
+#    DROP_PATH_RATE: 0.3
+#    PATCH_NORM: True
+OUTPUT_DIR: ./output_num_classes_1
